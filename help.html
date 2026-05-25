@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seepco AI OS — Help &amp; Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="inner-pages.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ── SIDEBAR ─────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand-row">
+      <span class="sidebar__brand-text">Seepco AI OS</span>
+      <button class="sidebar__collapse-btn" id="collapseBtn" aria-label="Collapse sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><polyline points="14 9 11 12 14 15"/></svg>
+      </button>
+    </div>
+    <nav class="sidebar__nav">
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        <span class="nav-item__label">New chat</span>
+      </a>
+      <a href="conversations.html" class="nav-item">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="nav-item__label">My conversations</span>
+      </a>
+      <a href="bookmarks.html" class="nav-item">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="nav-item__label">Bookmarked answers</span>
+      </a>
+      <a href="agents.html" class="nav-item nav-item--expandable">
+        <span class="nav-item__left">
+          <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+          <span class="nav-item__label">Departments AI</span>
+        </span>
+        <svg class="nav-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <a href="help.html" class="nav-item nav-item--active">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <span class="nav-item__label">Help &amp; support</span>
+      </a>
+    </nav>
+    <div class="sidebar__user">
+      <div class="user-info">
+        <div class="user-avatar">OF</div>
+        <div class="user-details">
+          <span class="user-name">Oduneye Oluwafemi</span>
+          <span class="user-role">HR Specialist</span>
+        </div>
+      </div>
+      <button class="user-menu-btn" aria-label="User menu">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CARD ───────────────────────────────────────── -->
+  <main class="main-card">
+    <div class="deco-grids" id="decoGrids"></div>
+    <div class="page-scroll">
+
+      <section class="page-heading">
+        <div>
+          <h1 class="page-heading__title">Help &amp; Support</h1>
+          <p class="page-heading__sub">How can we help you?</p>
+        </div>
+      </section>
+
+      <!-- Search -->
+      <div class="help-search">
+        <svg class="help-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="help-search__input" type="text" placeholder="Search help articles...">
+      </div>
+
+      <!-- Help categories -->
+      <div>
+        <p class="section-label">Browse by topic</p>
+        <div class="help-cards">
+
+          <div class="help-card">
+            <div class="help-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <p class="help-card__title">Getting started with agents</p>
+            <p class="help-card__desc">Learn how to pick the right agent for your task and get the best results from each department specialist.</p>
+          </div>
+
+          <div class="help-card">
+            <div class="help-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <p class="help-card__title">Uploading documents</p>
+            <p class="help-card__desc">How to attach PDFs, Word documents, and spreadsheets for AI analysis. Supported formats and size limits.</p>
+          </div>
+
+          <div class="help-card">
+            <div class="help-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <p class="help-card__title">Data privacy &amp; security</p>
+            <p class="help-card__desc">All conversations are encrypted at rest and in transit. No data leaves Seepco's infrastructure. Retention and deletion policies.</p>
+          </div>
+
+          <div class="help-card">
+            <div class="help-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.64 13.37"/><path d="M4.93 4.93A10 10 0 0 0 3.29 18.3"/><path d="M9 12a3 3 0 0 0 6 0"/></svg>
+            </div>
+            <p class="help-card__title">Admin &amp; access control</p>
+            <p class="help-card__desc">Managing user permissions, department access levels, and audit logs. IT admin guide for Seepco AI OS.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div>
+        <p class="section-label">Frequently asked questions</p>
+        <div class="help-faq" id="faqList">
+
+          <div class="faq-item">
+            <button class="faq-item__q">
+              Can agents access real-time data?
+              <svg class="faq-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <p class="faq-item__a">Yes. The Operations Agent and Finance Agent are connected to Seepco's live data systems for real-time field reports, production figures, and financial data. Other agents draw from the document knowledge base, which is updated daily.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__q">
+              How do I know which agent to use?
+              <svg class="faq-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <p class="faq-item__a">Use the Department Agents page as your starting point — each agent lists what it can help with. For cross-departmental questions, start with the general AI assistant on the dashboard and it will route to the right specialist automatically.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__q">
+              Are AI responses accurate and legally reliable?
+              <svg class="faq-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <p class="faq-item__a">Responses are grounded in Seepco's official documents and policies — all citations are traceable. For high-stakes decisions (contract execution, disciplinary actions, regulatory submissions), always have a qualified human expert review the AI output before acting on it.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__q">
+              Can I share a conversation with my team?
+              <svg class="faq-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <p class="faq-item__a">Yes — use the Share button at the top of any conversation to generate a read-only link. You can also export conversations as PDF using the Export button. Sharing respects your organisation's access control settings.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__q">
+              How do I report an incorrect AI response?
+              <svg class="faq-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <p class="faq-item__a">Use the thumbs-down button on any AI response to flag it. You can add a note explaining what was wrong. Flagged responses are reviewed by the Seepco AI OS team within 2 business days and used to improve the system.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="help-contact">
+        <div class="help-contact__info">
+          <span class="help-contact__title">Still need help?</span>
+          <span class="help-contact__sub">Reach the Seepco IT Helpdesk — we typically respond within 4 hours.</span>
+        </div>
+        <button class="help-contact__btn">Contact support</button>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="help.js"></script>
+</body>
+</html>

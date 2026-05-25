@@ -1,0 +1,178 @@
+/* ============================================================
+   LEGAL CHAT — extends chat.css
+   ============================================================ */
+
+/* ── Conversation title area ── */
+.convo-title-area {
+  flex-shrink: 0;
+  padding: 20px 32px 8px;
+  border-bottom: 0.5px solid var(--grey-100);
+}
+
+.convo-title-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.convo-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--grey-950);
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  font-family: var(--font);
+  cursor: text;
+  outline: none;
+  transition: color 0.15s;
+}
+.convo-title--placeholder { color: var(--grey-300); }
+
+/* ── File chip inside user message bubble ── */
+.msg__bubble--with-file {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.msg__file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--grey-200);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--grey-800);
+  letter-spacing: -0.02em;
+  width: fit-content;
+  font-family: var(--font);
+}
+
+.msg__bubble-text {
+  font-size: 15px;
+  color: var(--grey-950);
+  letter-spacing: -0.03em;
+  line-height: 1.55;
+}
+
+/* ── File reference chip in AI response ── */
+.msg__file-ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--grey-100);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 12px;
+  color: var(--grey-800);
+  letter-spacing: -0.02em;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s;
+  width: fit-content;
+  border: none;
+}
+.msg__file-ref:hover { background: var(--grey-200); }
+
+/* ── Risk analysis formatting ── */
+.risk-summary {
+  font-size: 15px;
+  color: var(--grey-950);
+  letter-spacing: -0.03em;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.risk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.risk-item {
+  font-size: 14px;
+  color: var(--grey-800);
+  letter-spacing: -0.025em;
+  line-height: 1.6;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--grey-50);
+  border: 0.5px solid var(--grey-200);
+}
+
+.risk-item__badge {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font);
+}
+.risk-item__badge--high   { color: #d93526; }
+.risk-item__badge--medium { color: #c47c00; }
+.risk-item__badge--low    { color: #1d8a4e; }
+
+.risk-item__clause { font-weight: 600; color: var(--grey-950); }
+
+/* ── Legal action bar (grouped chip) ── */
+.msg__legal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.legal-action-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--grey-100);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+
+.legal-action-btn {
+  display: flex;
+  align-items: center;
+  color: var(--grey-400);
+  transition: color 0.15s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+.legal-action-btn:hover { color: var(--grey-950); }
+
+/* ── Attached file in composer ── */
+.composer-file {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--grey-200);
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: var(--grey-800);
+  letter-spacing: -0.02em;
+  width: fit-content;
+  font-family: var(--font);
+}
+
+.composer-file__remove {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--grey-500);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  transition: color 0.15s;
+  padding: 0;
+  line-height: 1;
+}
+.composer-file__remove:hover { color: var(--grey-950); }
+
+/* ── No-file state of composer ── */
+.chat-card--has-file { gap: 8px; }

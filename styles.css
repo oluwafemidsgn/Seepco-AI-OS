@@ -1,0 +1,368 @@
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --orange-500: #ff5c00;
+  --orange-400: #ff9165;
+  --orange-100: #ffe9e1;
+
+  --grey-950: #111419;
+  --grey-600:  #5f6979;
+  --grey-500:  #7d899b;
+  --grey-200:  #e7e9ec;
+  --grey-100:  #f4f5f6;
+  --grey-50:   #fafafb;
+
+  --font: 'IBM Plex Sans', sans-serif;
+  --radius-card:  24px;
+  --radius-input: 16px;
+  --radius-btn:   16px;
+
+  --card-width: 555px;
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--grey-50);
+  color: var(--grey-950);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   PAGE LAYOUT
+   ============================================================ */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================================
+   BRAND HEADER
+   ============================================================ */
+.brand {
+  margin-top: 64px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange-500);
+  letter-spacing: -0.04em;
+  z-index: 2;
+  position: relative;
+}
+
+/* ============================================================
+   MAIN CONTENT (grids + card)
+   ============================================================ */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding: 48px 0;
+}
+
+/* ============================================================
+   LOGIN CARD
+   ============================================================ */
+.login-card {
+  width: var(--card-width);
+  background: #ffffff;
+  border: 0.5px solid var(--grey-200);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+}
+
+.login-card__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 70px 86px;
+}
+
+.login-card__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 287px;
+  text-align: center;
+}
+
+.login-card__title {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--grey-950);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.login-card__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--grey-500);
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-600);
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--grey-100);
+  border: 0.5px solid var(--grey-200);
+  border-radius: var(--radius-input);
+  padding: 12px 24px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--grey-950);
+  letter-spacing: -0.03em;
+  outline: none;
+  transition: border-color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-input::placeholder {
+  color: var(--grey-500);
+}
+
+.form-input:focus {
+  border-color: var(--orange-400);
+  background: #ffffff;
+}
+
+.form-input:focus.form-input--error,
+.form-input--error {
+  border-color: #e53935;
+}
+
+/* password input with toggle button */
+.input-wrapper .form-input {
+  padding-right: 48px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--grey-500);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.toggle-password:hover {
+  color: var(--grey-950);
+}
+
+.eye-icon { display: block; }
+
+.forgot-password {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-600);
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.15s ease;
+}
+
+.forgot-password:hover {
+  color: var(--orange-500);
+}
+
+/* ============================================================
+   CONTINUE BUTTON
+   ============================================================ */
+.btn-continue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 35px;
+  background: var(--orange-500);
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 14px 32px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  position: relative;
+}
+
+.btn-continue:hover {
+  background: #e65200;
+}
+
+.btn-continue:active {
+  transform: scale(0.98);
+}
+
+.btn-continue:disabled {
+  background: var(--orange-400);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-continue__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: none;
+  flex-shrink: 0;
+}
+
+.btn-continue.loading .btn-continue__spinner {
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   FORM ERROR
+   ============================================================ */
+.form-error {
+  font-size: 12px;
+  color: #e53935;
+  letter-spacing: -0.02em;
+  min-height: 16px;
+  text-align: center;
+}
+
+/* ============================================================
+   PIXEL GRID DECORATIONS
+   ============================================================ */
+.pixel-grids {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pixel-grids--left  { left: 0; }
+.pixel-grids--right { right: 0; }
+
+.pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 13px);
+  grid-template-rows: repeat(6, 13px);
+  gap: 7.6px 9.5px;
+  flex-shrink: 0;
+}
+
+.pixel-cell {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+}
+
+.pixel-cell--dark  { background: var(--orange-500); }
+.pixel-cell--light { background: var(--orange-100); }
+.pixel-cell--bg    { background: var(--grey-50); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-500);
+  letter-spacing: -0.04em;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  :root { --card-width: calc(100vw - 32px); }
+
+  .login-card__inner {
+    padding: 48px 32px;
+    gap: 36px;
+  }
+
+  .login-card__heading { width: 100%; }
+
+  .login-card__title { font-size: 28px; }
+
+  .pixel-grids--left  { left: -80px; }
+  .pixel-grids--right { right: -80px; }
+}

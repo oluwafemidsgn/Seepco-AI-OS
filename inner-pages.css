@@ -1,0 +1,411 @@
+/* ============================================================
+   INNER PAGES — shared styles for conversations, bookmarks, help
+   Depends on dashboard.css for layout/sidebar/main-card
+   ============================================================ */
+
+/* ── Page scroll area ── */
+.page-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 56px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scrollbar-width: none;
+}
+.page-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Page heading ── */
+.page-heading {
+  margin-top: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-heading__title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--grey-950);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.page-heading__sub {
+  font-size: 15px;
+  color: var(--grey-400);
+  letter-spacing: -0.03em;
+  padding-bottom: 6px;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--grey-400);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   CONVERSATION LIST
+   ============================================================ */
+.convo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.convo-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  border: 0.5px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+  cursor: pointer;
+}
+.convo-item:hover {
+  background: var(--grey-50);
+  border-color: var(--grey-200);
+}
+
+.convo-item__icon-box {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: var(--grey-50);
+  border: 0.5px solid var(--grey-200);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.convo-item:hover .convo-item__icon-box { background: #fff; }
+
+.convo-item__icon {
+  display: grid;
+  grid-template-columns: repeat(3, 5px);
+  grid-template-rows: repeat(3, 5px);
+  gap: 1.5px 1.8px;
+}
+
+.convo-icon-cell { width: 5px; height: 5px; border-radius: 1px; }
+.convo-icon-cell--dark  { background: var(--orange-500); }
+.convo-icon-cell--light { background: var(--orange-100); }
+.convo-icon-cell--grey  { background: var(--grey-200); }
+
+.convo-item__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.convo-item__title {
+  font-size: 15px;
+  color: var(--grey-950);
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.convo-item__preview {
+  font-size: 13px;
+  color: var(--grey-400);
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.convo-item__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.convo-item__time {
+  font-size: 11px;
+  color: var(--grey-300);
+  letter-spacing: -0.02em;
+}
+
+.convo-item__agent-tag {
+  font-size: 10px;
+  color: var(--grey-400);
+  letter-spacing: -0.01em;
+  background: var(--grey-100);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.convo-item__more-btn {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--grey-300);
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+  border: none; background: none; cursor: pointer;
+}
+.convo-item:hover .convo-item__more-btn { opacity: 1; }
+.convo-item__more-btn:hover { color: var(--grey-600); background: var(--grey-200); }
+
+/* ============================================================
+   BOOKMARK CARDS
+   ============================================================ */
+.bookmark-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bookmark-card {
+  background: var(--grey-50);
+  border: 0.5px solid var(--grey-200);
+  border-radius: 20px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: background 0.15s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.bookmark-card:hover {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.bookmark-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bookmark-card__agent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bookmark-card__agent-icon {
+  display: grid;
+  grid-template-columns: repeat(3, 5px);
+  grid-template-rows: repeat(3, 5px);
+  gap: 1.5px 1.8px;
+}
+
+.bookmark-card__agent-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--grey-500);
+  letter-spacing: -0.025em;
+}
+
+.bookmark-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bookmark-card__btn {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--grey-300);
+  border: none; background: none; cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+.bookmark-card__btn:hover { color: var(--grey-600); background: var(--grey-200); }
+
+.bookmark-card__text {
+  font-size: 14px;
+  color: var(--grey-800);
+  letter-spacing: -0.025em;
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bookmark-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bookmark-card__meta {
+  font-size: 11px;
+  color: var(--grey-300);
+  letter-spacing: -0.02em;
+}
+
+.bookmark-card__open {
+  font-size: 12px;
+  color: var(--orange-500);
+  letter-spacing: -0.025em;
+  border: none; background: none; cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.bookmark-card__open:hover { background: var(--orange-50); }
+
+/* ============================================================
+   HELP PAGE
+   ============================================================ */
+.help-search {
+  display: flex;
+  align-items: center;
+  background: var(--grey-50);
+  border-radius: 16px;
+  padding: 12px 20px;
+  gap: 10px;
+  border: 0.5px solid var(--grey-200);
+}
+
+.help-search__icon { color: var(--grey-300); flex-shrink: 0; }
+
+.help-search__input {
+  flex: 1;
+  border: none; outline: none; background: transparent;
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--grey-950);
+  letter-spacing: -0.03em;
+}
+.help-search__input::placeholder { color: var(--grey-300); }
+
+.help-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.help-card {
+  background: var(--grey-50);
+  border: 0.5px solid var(--grey-200);
+  border-radius: 20px;
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.2s, transform 0.15s;
+}
+.help-card:hover {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transform: translateY(-1px);
+}
+
+.help-card__icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--orange-50);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange-500);
+}
+
+.help-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--grey-950);
+  letter-spacing: -0.04em;
+}
+
+.help-card__desc {
+  font-size: 13px;
+  color: var(--grey-500);
+  letter-spacing: -0.025em;
+  line-height: 1.55;
+}
+
+.help-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.faq-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 0.5px solid transparent;
+  transition: border-color 0.15s;
+}
+.faq-item:hover { border-color: var(--grey-200); }
+
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--grey-950);
+  letter-spacing: -0.03em;
+  border: none; background: none; width: 100%; text-align: left;
+  font-family: var(--font);
+  border-radius: 12px;
+  transition: background 0.15s;
+}
+.faq-item__q:hover { background: var(--grey-50); }
+
+.faq-item__chevron {
+  color: var(--grey-400);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.faq-item--open .faq-item__chevron { transform: rotate(180deg); }
+
+.faq-item__a {
+  display: none;
+  padding: 0 16px 14px;
+  font-size: 14px;
+  color: var(--grey-500);
+  letter-spacing: -0.025em;
+  line-height: 1.65;
+}
+.faq-item--open .faq-item__a { display: block; }
+
+.help-contact {
+  background: var(--grey-50);
+  border: 0.5px solid var(--grey-200);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.help-contact__info { display: flex; flex-direction: column; gap: 4px; }
+.help-contact__title { font-size: 16px; font-weight: 600; color: var(--grey-950); letter-spacing: -0.04em; }
+.help-contact__sub   { font-size: 13px; color: var(--grey-400); letter-spacing: -0.025em; }
+
+.help-contact__btn {
+  background: var(--orange-500);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 14px;
+  letter-spacing: -0.03em;
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: none; cursor: pointer;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.help-contact__btn:hover { background: #e65200; }

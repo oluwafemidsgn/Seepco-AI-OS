@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seepco AI OS — Document Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chat.css">
+  <link rel="stylesheet" href="document.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ── SIDEBAR (collapsed) ─────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand-row">
+        <span class="sidebar__brand-text">Seepco AI OS</span>
+        <button class="sidebar__collapse-btn" id="collapseBtn" aria-label="Expand sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><polyline points="14 9 11 12 14 15"/></svg>
+        </button>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+          <span class="nav-item__label">New chat</span>
+        </a>
+        <a href="conversations.html" class="nav-item nav-item--active">
+          <span class="nav-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <span class="nav-item__label">My conversations</span>
+        </a>
+        <a href="bookmarks.html" class="nav-item">
+          <span class="nav-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <span class="nav-item__label">Bookmarked answers</span>
+        </a>
+        <a href="agents.html" class="nav-item">
+          <span class="nav-item__left">
+            <span class="nav-item__icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </span>
+            <span class="nav-item__label">Departments AI</span>
+          </span>
+          <svg class="nav-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <a href="help.html" class="nav-item">
+          <span class="nav-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </span>
+          <span class="nav-item__label">Help &amp; support</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__user">
+        <div class="user-info">
+          <div class="user-avatar">OF</div>
+          <div class="user-details">
+            <span class="user-name">Oduneye Oluwafemi</span>
+            <span class="user-role">HR Specialist</span>
+          </div>
+        </div>
+        <button class="user-menu-btn" aria-label="User menu">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CARD ───────────────────────────────────────── -->
+    <main class="main-card">
+
+      <div class="deco-grids" id="decoGrids"></div>
+
+      <!-- SPLIT: left chat | right document -->
+      <div class="doc-split">
+
+        <!-- ── LEFT: Chat panel ── -->
+        <div class="doc-chat-panel">
+          <div class="chat-layout">
+
+            <header class="chat-header">
+              <div class="chat-header__inner">
+                <div class="chat-header__left">
+                  <div class="agent-pill" id="agentPill">
+                    <div class="agent-pill__icon" id="headerIcon"></div>
+                    <span class="agent-pill__name">Knowledge Agent</span>
+                    <svg class="agent-pill__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="chat-header__sep"></div>
+                  <span class="chat-header__title">Bonga FPSO Operations</span>
+                </div>
+              </div>
+            </header>
+
+            <div class="chat-messages" id="chatMessages">
+              <div class="msgs-inner" id="msgsInner">
+
+                <div class="msg msg--user">
+                  <div class="msg__bubble">What is the emergency shutdown procedure for Bonga FPSO?</div>
+                  <div class="msg__meta">
+                    <span class="msg__time">10:14 AM</span>
+                    <button class="msg__action-btn" aria-label="Copy"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+                  </div>
+                </div>
+
+                <div class="msg msg--ai">
+                  <p class="msg__source-label">Based on SOP-OPS-007 Rev.4, Bonga FPSO Operations Manual §12</p>
+                  <div class="msg__card">
+                    <div class="msg__text">
+                      <p>The <strong>Emergency Shutdown Procedure for Bonga FPSO</strong> (SOP-OPS-007, Rev. 4) defines a three-tier shutdown sequence — Level 1 Process Shutdown, Level 2 Emergency Shutdown (OIM authorization, NAPIMS notification within 2 hrs), and Level 3 ESS (dual-authorization, full evacuation).</p>
+                    </div>
+                    <div class="msg__citations">
+                      <a href="#sec-level1" class="citation-chip" onclick="highlightSection('sec-level1'); return false;">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        SOP-OPS-007 §3.1
+                      </a>
+                      <a href="#sec-level2" class="citation-chip" onclick="highlightSection('sec-level2'); return false;">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        SOP-OPS-007 §3.2
+                      </a>
+                      <a href="#sec-level3" class="citation-chip" onclick="highlightSection('sec-level3'); return false;">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        SOP-OPS-007 §3.3
+                      </a>
+                    </div>
+                  </div>
+                  <div class="msg__agent-bar">
+                    <span class="msg__time">10:15 AM</span>
+                    <div class="agent-bar-sep"></div>
+                    <button class="agent-bar-pill">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                      Bookmark
+                    </button>
+                    <div class="agent-bar-sep"></div>
+                    <button class="thumb-btn" aria-label="Helpful">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                    </button>
+                    <button class="thumb-btn" aria-label="Not helpful">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="chat-composer">
+              <div class="composer-inner">
+                <div class="chat-card">
+                  <textarea class="chat-input" id="chatInput" rows="2" placeholder="Ask a follow-up..." aria-label="Type your message"></textarea>
+                  <div class="chat-actions">
+                    <button class="chat-add-btn">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                      Add
+                    </button>
+                    <div class="chat-actions__right">
+                      <button class="chat-icon-btn" aria-label="Microphone">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                      </button>
+                      <button class="chat-send-btn" id="sendBtn">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── DIVIDER ── -->
+        <div class="doc-divider"></div>
+
+        <!-- ── RIGHT: Document panel ── -->
+        <div class="doc-panel">
+
+          <div class="doc-panel__header">
+            <span class="doc-panel__title">SOP-OPS-007 Rev.4 — Emergency Shutdown Procedure</span>
+            <div class="doc-panel__actions">
+              <button class="doc-btn doc-btn--icon" onclick="history.back()" aria-label="Back">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              </button>
+              <button class="doc-btn doc-btn--copy">
+                Copy
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <button class="doc-btn doc-btn--icon" aria-label="Share">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </button>
+              <button class="doc-btn doc-btn--icon" onclick="history.back()" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="doc-panel__scroll" id="docScroll">
+            <h1 class="doc-doc-title">Emergency Shutdown Procedure — Bonga FPSO</h1>
+            <p class="doc-doc-meta">SOP-OPS-007 Rev.4 &nbsp;|&nbsp; Effective: March 2024 &nbsp;|&nbsp; Supersedes: Rev.3 (June 2022)</p>
+            <div class="doc-rule"></div>
+
+            <div class="doc-body">
+
+              <div>
+                <p class="doc-section-h1">1. Purpose</p>
+                <p class="doc-p">This Standard Operating Procedure defines the emergency shutdown sequence for Bonga FPSO, including authorization requirements, communication protocols, and post-shutdown checklists. It applies to all personnel with operational authority aboard the facility.</p>
+              </div>
+
+              <div>
+                <p class="doc-section-h1">2. Scope</p>
+                <p class="doc-p">Applicable to all Bonga FPSO operations and support personnel. This revision supersedes SOP-OPS-007 Rev.3 and incorporates lessons learned from the 2023 unplanned Level 2 shutdown event.</p>
+              </div>
+
+              <div>
+                <p class="doc-section-h1">3. Shutdown Levels</p>
+              </div>
+
+              <!-- Highlighted section: Level 1 -->
+              <div class="doc-section--highlight" id="sec-level1">
+                <span class="doc-cite-badge">Cited</span>
+                <p class="doc-section-h2">3.1 Level 1 — Process Shutdown (PSD)</p>
+                <p class="doc-p"><strong>Initiated by:</strong> Process control system (automatic) or Operator (manual)<br>
+                <strong>Authorization:</strong> No prior authorization required<br>
+                <strong>Scope:</strong> Isolates specific process equipment or trains while maintaining overall facility operations.</p>
+                <p class="doc-p">Level 1 shutdowns are routine and managed at the operator level. An entry must be made in the Shift Log within 30 minutes of initiation. No external reporting obligation unless the shutdown results in a production loss exceeding 500 bbl/day.</p>
+              </div>
+
+              <!-- Highlighted section: Level 2 -->
+              <div class="doc-section--highlight" id="sec-level2">
+                <span class="doc-cite-badge">Cited</span>
+                <p class="doc-section-h2">3.2 Level 2 — Emergency Shutdown (ESD)</p>
+                <p class="doc-p"><strong>Initiated by:</strong> Offshore Installation Manager (OIM) or Control Room Supervisor<br>
+                <strong>Authorization:</strong> OIM authorization required<br>
+                <strong>Scope:</strong> Full shutdown of all production operations and isolation of all hydrocarbon inventories.</p>
+                <ul class="doc-ul">
+                  <li>NAPIMS must be notified within <strong>2 hours</strong> of initiation (Form NAPIMS-IR-01)</li>
+                  <li>Onshore Operations Centre notified within 30 minutes</li>
+                  <li>DPR notified if shutdown exceeds 24 hours</li>
+                </ul>
+                <p class="doc-p">Emergency Response Team (ERT) to be placed on standby. All non-essential SIMOPS to be suspended immediately.</p>
+              </div>
+
+              <!-- Highlighted section: Level 3 -->
+              <div class="doc-section--highlight" id="sec-level3">
+                <span class="doc-cite-badge">Cited</span>
+                <p class="doc-section-h2">3.3 Level 3 — Emergency Support Station (ESS)</p>
+                <p class="doc-p"><strong>Initiated by:</strong> OIM with Area Authority co-authorization (introduced Rev.4)<br>
+                <strong>Authorization:</strong> <strong>Dual-authorization required</strong> — OIM + Area Authority<br>
+                <strong>Scope:</strong> Full facility shutdown including all utilities; automatic evacuation protocol triggered.</p>
+                <ul class="doc-ul">
+                  <li>Automatic muster alarm triggered on ESS initiation</li>
+                  <li>All personnel to designated Muster Stations within 10 minutes</li>
+                  <li>Medevac/emergency vessel on standby upon L3 declaration</li>
+                  <li>NAPIMS, DPR, and NOSDRA notification required within 1 hour</li>
+                </ul>
+                <p class="doc-p"><strong>Emergency Authority Protocol:</strong> If Area Authority is unreachable, OIM may invoke unilateral initiation and must notify Area Authority at first available opportunity.</p>
+              </div>
+
+              <div>
+                <p class="doc-section-h1">4. Communication Protocol</p>
+                <p class="doc-p">All external notifications shall be made using the Standard Incident Notification Form (SINF-01). Communications log must be maintained throughout the event and submitted as part of the Post-Incident Report.</p>
+              </div>
+
+              <div>
+                <p class="doc-section-h1">5. Post-Shutdown Requirements</p>
+                <p class="doc-p">Following any Level 2 or Level 3 shutdown, a Post-Shutdown Review must be completed within 24 hours of facility restart. Root Cause Analysis (RCA) is mandatory if the downtime exceeds 4 hours. RCA findings to be submitted to HSSE Director within 72 hours.</p>
+              </div>
+
+              <div>
+                <p class="doc-section-h1">6. Revision History</p>
+                <p class="doc-p">Rev.4 (March 2024): Added dual-authorization requirement for Level 3 shutdowns (§3.3). Updated NAPIMS notification timeline. Added Emergency Authority Protocol.</p>
+                <p class="doc-p">Rev.3 (June 2022): Aligned with updated DPR reporting requirements.</p>
+              </div>
+
+            </div><!-- /doc-body -->
+          </div><!-- /doc-panel__scroll -->
+        </div><!-- /doc-panel -->
+
+      </div><!-- /doc-split -->
+    </main>
+  </div>
+
+  <script src="document.js"></script>
+</body>
+</html>
