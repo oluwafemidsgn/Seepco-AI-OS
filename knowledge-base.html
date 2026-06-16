@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seepco AI OS — Knowledge Base</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="kms.css">
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="app">
+
+  <!-- ── SIDEBAR ─────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand-row">
+      <span class="sidebar__brand-text">Seepco AI OS</span>
+      <button class="sidebar__collapse-btn" id="collapseBtn" aria-label="Collapse sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><polyline points="14 9 11 12 14 15"/></svg>
+      </button>
+    </div>
+
+    <!-- Active search bar -->
+    <div class="side-search">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#aab2bd" stroke-width="1.2"/><line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#aab2bd" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <input id="side-search-input" type="text" placeholder="Search the knowledge base…"
+        onkeydown="if(event.key==='Enter'){doSearch(this.value);this.value='';}">
+    </div>
+
+    <nav class="sidebar__nav">
+      <a class="nav-item" id="nav-home" onclick="goTo('dashboard')">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        <span class="nav-item__label">New search</span>
+      </a>
+      <a class="nav-item" id="nav-mysearch" onclick="goTo('mysearch')">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><line x1="12" y1="7" x2="12" y2="12"/><line x1="12" y1="12" x2="15" y2="14"/></svg></span>
+        <span class="nav-item__label">My searches</span>
+      </a>
+      <a class="nav-item" id="nav-mysaves" onclick="goTo('mysaves')">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="nav-item__label">My saves</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="nav-item__label">AI chat</span>
+      </a>
+      <a href="agents.html" class="nav-item">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+        <span class="nav-item__label">Departments AI</span>
+      </a>
+      <a href="help.html" class="nav-item">
+        <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <span class="nav-item__label">Help &amp; support</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__user">
+      <div class="user-info">
+        <div class="user-avatar">OF</div>
+        <div class="user-details">
+          <span class="user-name">Oduneye Oluwafemi</span>
+          <span class="user-role">HR Specialist</span>
+        </div>
+      </div>
+      <button class="user-menu-btn" aria-label="User menu">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ────────────────────────────────────────────── -->
+  <main class="kms-main">
+
+    <!-- SCREEN — DASHBOARD -->
+    <div class="screen active" id="screen-dashboard">
+      <div class="dashboard-body">
+        <div class="greeting-wrap">
+          <p class="greeting-sub" id="dash-greeting">Good morning,</p>
+          <p class="greeting-main">What do you need to know?</p>
+        </div>
+        <div class="search-bar-pill" onclick="goTo('suggestion')">
+          <span class="search-placeholder-text">Ask a question or search documents...</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#aab2bd" stroke-width="1.2"/><line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#aab2bd" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="category-pills">
+          <div class="pill" onclick="searchByCategory('Legal')">Legal</div>
+          <div class="pill" onclick="searchByCategory('Finance')">Finance</div>
+          <div class="pill" onclick="searchByCategory('Meetings')">Meetings</div>
+          <div class="pill" onclick="searchByCategory('Proposals')">Proposals</div>
+          <div class="pill" onclick="searchByCategory('Supply chain')">Supply chain</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-text">
+          <span class="info-card-title">This is a knowledge bank for SEEPCO</span>
+          <span class="info-card-sub">Note this is an active knowledge archive and bank for everything data.</span>
+        </div>
+        <div class="pixel-grid" id="pixel-grid" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- SCREEN — SUGGESTION -->
+    <div class="screen" id="screen-suggestion">
+      <div class="suggestion-body">
+        <div class="greeting-wrap">
+          <p class="greeting-sub" id="sug-greeting">Good morning,</p>
+          <p class="greeting-main">What do you need to know?</p>
+        </div>
+        <div class="search-expanded">
+          <div class="search-expanded-top">
+            <input class="search-input-real" id="search-input" type="text"
+              placeholder="Ask a question or search documents..."
+              oninput="filterSuggestions()" onkeydown="handleSearchKey(event)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;cursor:pointer;" onclick="doSearch()">
+              <circle cx="7" cy="7" r="4.5" stroke="#aab2bd" stroke-width="1.2"/>
+              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#aab2bd" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="divider"></div>
+          <div id="suggestions-list"></div>
+        </div>
+        <div class="category-pills">
+          <div class="pill" onclick="searchByCategory('Legal')">Legal</div>
+          <div class="pill" onclick="searchByCategory('Finance')">Finance</div>
+          <div class="pill" onclick="searchByCategory('Meetings')">Meetings</div>
+          <div class="pill" onclick="searchByCategory('Proposals')">Proposals</div>
+          <div class="pill" onclick="searchByCategory('Supply chain')">Supply chain</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN — RESULTS -->
+    <div class="screen" id="screen-results">
+      <div class="results-body">
+        <div class="results-header">
+          <div class="results-title-row">
+            <h1 class="results-title" id="results-title">Proposal document template</h1>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;cursor:pointer;opacity:.5;" onclick="goTo('suggestion')">
+              <circle cx="7" cy="7" r="4.5" stroke="#7d899b" stroke-width="1.2"/>
+              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#7d899b" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="filter-pills" id="results-filters">
+            <div class="filter-pill active" onclick="setResultFilter(this,'All')">All</div>
+            <div class="filter-pill" onclick="setResultFilter(this,'Images')">Images</div>
+            <div class="filter-pill" onclick="setResultFilter(this,'Videos')">Videos</div>
+            <div class="filter-pill" onclick="setResultFilter(this,'Documents')">Documents</div>
+            <div class="filter-pill" onclick="setResultFilter(this,'Others')">Others</div>
+          </div>
+        </div>
+        <p class="results-count" id="results-count">Found 8 relevant documents for this query</p>
+
+        <!-- AI CARD (collapsed) -->
+        <div class="ai-card" id="ai-card-collapsed">
+          <div class="ai-card-body">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px;">
+              <path d="M8 1L9.5 5.5L14 7L9.5 8.5L8 13L6.5 8.5L2 7L6.5 5.5L8 1Z" fill="#ff9165"/>
+            </svg>
+            <p class="ai-text" id="ai-summary-text">AI Summary: Permanent staff at Seepco are entitled to 21 working days of annual leave per year. Applications must be submitted 14 days in advance and approved by the direct line manager. See the full policy for details on carry-over and emergency leave.</p>
+          </div>
+          <div><button class="view-more-btn" onclick="expandAI()">View more</button></div>
+        </div>
+
+        <!-- AI CARD (expanded) -->
+        <div class="ai-card" id="ai-card-expanded" style="display:none;">
+          <div class="ai-card-body">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px;">
+              <path d="M8 1L9.5 5.5L14 7L9.5 8.5L8 13L6.5 8.5L2 7L6.5 5.5L8 1Z" fill="#ff9165"/>
+            </svg>
+            <div style="display:flex;flex-direction:column;gap:20px;flex:1;">
+              <p class="ai-text">AI Summary: Permanent staff at Seepco are entitled to 21 working days of annual leave per year. Applications must be submitted 14 days in advance and approved by the direct line manager. See the full policy for details on carry-over and emergency leave.</p>
+              <div class="ai-expanded-detail">
+                <span>Annual Leave: 21 days</span>
+                <span>Sick Leave: 10 days (medical certificate required after 3 days)</span>
+                <span>Maternity Leave: 12 weeks (confirmed in payroll letter)</span>
+                <span>Paternity Leave: 5 days</span>
+                <span>Carry-over: Up to 5 days can be carried to next year</span>
+              </div>
+              <ul class="ai-sources">
+                <li>📄 Source 1: "Employee Leave Policy — Rev 5, Section 3–5" — <span style="cursor:pointer;text-decoration:underline;" onclick="openDoc(1)">Open Document</span></li>
+                <li>📄 Source 2: "HR Onboarding Guide — Chapter 2" — <span style="cursor:pointer;text-decoration:underline;" onclick="openDoc(8)">Open Document</span></li>
+              </ul>
+              <div class="ai-card-actions">
+                <div class="doc-actions">
+                  <button class="action-btn" onclick="saveAISummary()" title="Save answer">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2h10v13l-5-3-5 3V2z" stroke="#49525f" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button class="action-btn" onclick="copyAISummary()" title="Copy link">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="12" cy="3" r="1.5" stroke="#49525f" stroke-width="1.2"/><circle cx="4" cy="8" r="1.5" stroke="#49525f" stroke-width="1.2"/><circle cx="12" cy="13" r="1.5" stroke="#49525f" stroke-width="1.2"/><path d="M5.5 7.2l5-3M5.5 8.8l5 3" stroke="#49525f" stroke-width="1.2"/></svg>
+                  </button>
+                  <button class="action-btn" onclick="shareAISummary()" title="Export">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3h7l3 3v7H3V3z" stroke="#49525f" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 3v3h3" stroke="#49525f" stroke-width="1.2"/></svg>
+                  </button>
+                </div>
+                <button class="show-less-btn" onclick="collapseAI()">Show less</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doc / Image / Video results -->
+        <div id="results-content" style="width:100%;"></div>
+      </div>
+    </div>
+
+    <!-- SCREEN — DOCUMENT VIEW -->
+    <div class="screen" id="screen-docview">
+      <div class="docview-layout">
+        <!-- Left list -->
+        <div class="docview-left">
+          <div class="results-header">
+            <div class="results-title-row">
+              <h1 class="results-title" id="dv-results-title" style="font-size:22px;letter-spacing:-0.88px;">Proposal document template</h1>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;cursor:pointer;opacity:.4;" onclick="goTo('suggestion')">
+                <circle cx="7" cy="7" r="4.5" stroke="#7d899b" stroke-width="1.2"/>
+                <line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#7d899b" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="filter-pills">
+              <div class="filter-pill active" onclick="setResultFilter(this,'All')">All</div>
+              <div class="filter-pill" onclick="setResultFilter(this,'Images')">Images</div>
+              <div class="filter-pill" onclick="setResultFilter(this,'Videos')">Videos</div>
+              <div class="filter-pill" onclick="setResultFilter(this,'Documents')">Documents</div>
+              <div class="filter-pill" onclick="setResultFilter(this,'Others')">Others</div>
+            </div>
+          </div>
+          <p class="results-count">Found 8 relevant documents for this query</p>
+          <!-- mini AI card -->
+          <div class="ai-card">
+            <div class="ai-card-body">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px;">
+                <path d="M8 1L9.5 5.5L14 7L9.5 8.5L8 13L6.5 8.5L2 7L6.5 5.5L8 1Z" fill="#ff9165"/>
+              </svg>
+              <p class="ai-text" style="font-size:13px;" id="dv-ai-text">AI Summary: Permanent staff at Seepco are entitled to 21 working days of annual leave per year. Applications must be submitted 14 days in advance and approved by the direct line manager.</p>
+            </div>
+          </div>
+          <div class="doc-list" id="dv-doc-list"></div>
+        </div>
+        <!-- Right reader -->
+        <div class="docview-right">
+          <div class="doc-reader-topbar">
+            <span class="doc-reader-query" id="dr-query">Emergency shutdown procedure for the Warri pipeline?</span>
+            <div class="doc-reader-actions">
+              <button class="icon-btn" title="Go back" onclick="goTo('results')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#252a31" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="copy-btn" onclick="copyDocContent()">
+                Copy
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="#252a31" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="icon-btn" title="Close" onclick="goTo('results')">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#49525f" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="doc-reader-title-section">
+            <h2 class="doc-reader-title" id="dr-title">Emergency shutdown procedure for the Warri pipeline?</h2>
+          </div>
+          <div class="doc-reader-content" id="dr-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN — MY SAVES -->
+    <div class="screen" id="screen-mysaves">
+      <div class="page-body">
+        <div class="page-header">
+          <div class="page-title-row">
+            <h1 class="page-title">My saves</h1>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;cursor:pointer;opacity:.4;" onclick="goTo('suggestion')">
+              <circle cx="7" cy="7" r="4.5" stroke="#7d899b" stroke-width="1.2"/>
+              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#7d899b" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="saves-tabs">
+            <div class="saves-tab active" onclick="setSavesTab(this,'answers')">Saved Answers</div>
+            <div class="saves-tab" onclick="setSavesTab(this,'docs')">Bookmarked Documents</div>
+            <div class="saves-tab" onclick="setSavesTab(this,'history')">My Search History</div>
+          </div>
+        </div>
+        <div id="saves-content"></div>
+      </div>
+    </div>
+
+    <!-- SCREEN — MY SEARCH -->
+    <div class="screen" id="screen-mysearch">
+      <div class="page-body">
+        <div class="page-header">
+          <div class="page-title-row">
+            <h1 class="page-title">My searches</h1>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;cursor:pointer;opacity:.4;" onclick="goTo('suggestion')">
+              <circle cx="7" cy="7" r="4.5" stroke="#7d899b" stroke-width="1.2"/>
+              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#7d899b" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="saves-tabs">
+            <div class="saves-tab active" onclick="setSearchTab(this,'all')">All</div>
+            <div class="saves-tab" onclick="setSearchTab(this,'topics')">By topics</div>
+          </div>
+        </div>
+        <div id="mysearch-content"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="kms.js"></script>
+</body>
+</html>

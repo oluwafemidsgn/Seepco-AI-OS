@@ -1,26 +1,4 @@
-/* ============================================================
-   DESIGN TOKENS
-   ============================================================ */
-:root {
-  --orange-500: #ff5c00;
-  --orange-400: #ff9165;
-  --orange-100: #ffe9e1;
-  --orange-50:  #fff5f2;
-
-  --grey-950: #111419;
-  --grey-800: #333943;
-  --grey-600: #5f6979;
-  --grey-500: #7d899b;
-  --grey-400: #aab2bd;
-  --grey-300: #d5d9de;
-  --grey-200: #e7e9ec;
-  --grey-100: #f4f5f6;
-  --grey-50:  #fafafb;
-
-  --font: 'IBM Plex Sans', sans-serif;
-  --card-radius: 24px;
-  --inner-radius: 16px;
-}
+/* Design tokens are defined centrally in tokens.css */
 
 /* ============================================================
    RESET / BASE

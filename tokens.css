@@ -1,0 +1,75 @@
+/* ============================================================
+   UNIFIED DESIGN TOKENS — Seepco AI OS + KMS
+   ============================================================ */
+:root {
+  /* Brand */
+  --orange-50:  #fff5f2;
+  --orange-100: #ffe9e1;
+  --orange-400: #ff9165;
+  --orange-500: #ff5c00;
+
+  /* Greyscale (AI OS naming, KMS values) */
+  --grey-950: #111419;
+  --grey-900: #252a31;
+  --grey-800: #333943;
+  --grey-700: #49525f;
+  --grey-600: #5f6979;
+  --grey-500: #7d899b;
+  --grey-400: #aab2bd;
+  --grey-300: #d5d9de;
+  --grey-200: #e7e9ec;
+  --grey-100: #f4f5f6;
+  --grey-50:  #fafafb;
+
+  /* Semantic aliases (KMS) */
+  --al-50:  var(--grey-50);
+  --al-100: var(--grey-100);
+  --al-200: var(--grey-200);
+  --al-300: var(--grey-300);
+  --al-400: var(--grey-400);
+  --al-500: var(--grey-500);
+  --al-600: var(--grey-600);
+  --al-700: var(--grey-700);
+  --al-900: var(--grey-900);
+  --al-950: var(--grey-950);
+
+  /* Status */
+  --success-500: #1d8a4e;
+  --warning-500: #c47c00;
+  --danger-500:  #e53935;
+
+  /* Typography */
+  --font: 'IBM Plex Sans', sans-serif;
+
+  /* Radius */
+  --radius-card:   24px;
+  --radius-input:  16px;
+  --radius-btn:    16px;
+  --radius-pill:   999px;
+  --radius-small:  8px;
+  --radius-medium: 12px;
+  /* Legacy aliases (AI OS page CSS) */
+  --card-radius:   var(--radius-card);
+  --inner-radius:  var(--radius-input);
+
+  /* Layout */
+  --card-width:     555px;
+  --max-content:    800px;
+  --sidebar-width:  276px;
+  --sidebar-collapsed: 64px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+
+  /* Transitions */
+  --transition-fast:  0.15s ease;
+  --transition-base:  0.2s ease;
+  --transition-slow:  0.3s ease;
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-toast:    1000;
+  --z-modal:    2000;
+}
