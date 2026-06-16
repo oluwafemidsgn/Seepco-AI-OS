@@ -37,10 +37,24 @@
           </span>
           Bookmarked answers
         </a>
-        <a href="knowledge-base.html" class="nav-item">
-          <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
-          <span class="nav-item__label">Knowledge Base</span>
-        </a>
+        <details class="nav-group">
+          <summary class="nav-item nav-item--expandable">
+            <span class="nav-item__left">
+              <span class="nav-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+              <span class="nav-item__label">Knowledge Base</span>
+            </span>
+            <svg class="nav-item__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="nav-sub">
+            <form class="nav-sub__search" action="knowledge-base.html" method="get" role="search">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#aab2bd" stroke-width="1.2"/><line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="#aab2bd" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <input type="text" name="q" placeholder="Search knowledge base…" aria-label="Search knowledge base">
+            </form>
+            <a href="knowledge-base.html" class="nav-sub__item">Search</a>
+            <a href="knowledge-base.html?screen=mysearch" class="nav-sub__item">My searches</a>
+            <a href="knowledge-base.html?screen=mysaves" class="nav-sub__item">My saves</a>
+          </div>
+        </details>
         <a href="agents.html" class="nav-item nav-item--active nav-item--expandable">
           <span class="nav-item__left">
             <span class="nav-item__icon">

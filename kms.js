@@ -119,13 +119,13 @@ function goTo(screen) {
   if (screen === 'mysearch') renderMySearchContent();
 }
 
-// Highlight the matching sidebar item
+// Highlight the matching Knowledge Base sub-item (the KB group stays active throughout)
 function setActiveNav(screen) {
   const homeScreens = ['dashboard','suggestion','results','docview'];
-  const map = { mysearch:'nav-mysearch', mysaves:'nav-mysaves' };
-  document.querySelectorAll('.sidebar__nav .nav-item').forEach(n => n.classList.remove('nav-item--active'));
-  const id = map[screen] || (homeScreens.includes(screen) ? 'nav-home' : null);
-  if (id) { const n = document.getElementById(id); if (n) n.classList.add('nav-item--active'); }
+  const map = { mysearch:'nav-sub-mysearch', mysaves:'nav-sub-mysaves' };
+  document.querySelectorAll('.nav-sub__item').forEach(n => n.classList.remove('nav-sub__item--active'));
+  const id = map[screen] || (homeScreens.includes(screen) ? 'nav-sub-search' : null);
+  if (id) { const n = document.getElementById(id); if (n) n.classList.add('nav-sub__item--active'); }
 }
 
 function setGreeting() {
@@ -143,6 +143,15 @@ function initSidebar() {
   const btn = document.getElementById('collapseBtn');
   const sidebar = document.getElementById('sidebar');
   if (btn && sidebar) btn.addEventListener('click', () => sidebar.classList.toggle('sidebar--collapsed'));
+
+  // In-sidebar search runs in-page (no reload) since we're already in the KB
+  const form = document.getElementById('kbSearchForm');
+  const input = document.getElementById('kbSearchInput');
+  if (form && input) form.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = input.value; input.value = '';
+    doSearch(v);
+  });
 }
 
 // ══════════════════════════════════════════
